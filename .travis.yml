@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- '4.3'
+
+install_depedencies:
+- npm install
+
+script: echo "Nothing"
+
+before_deploy:
+- npm run build
+
+deploy:
+  provider: lambda
+  function_name: DynamoDBLambdaAutoscale
+  role: arn:aws:iam::395685607895:role/DynamoDBLambdaAutoscale
+  handler_name: index.handler
+  zip: "dist.zip"
+  access_key_id: AKIAJGKWLFNTGKO6XIXA
+  secret_access_key:
+    secure: ML1OClF6ZZwoDKDknFUT8tfLtGRV0Px2ofZC4e19UI3hhykGhf+1DUdxluSa/dhoJkHBBFr2ZWjoIGQ7/Y5pE39E4UDGbn4yItAqyj7d0dzVPEytk9XitnUAU4nQHTGla1NwV1v8Wnnf4cwqM5w6ITiJp2+61CPJqb7RnQSpXX1wzOhfKcWPTem1coBXcNRxzRJVikWpIA72NCOGtvH/nd9YkXQC/p8rDbO0OdS1SJg3DgH17TZAubadxFmfycPNzTsMvA987d+cJI2DbUlQg4II5lAXAqCokk6BTGT+EwBS1krCOPEgyRLFmfOLbVbg4F/EVCyObzRrdRAwuRSpRa6Fou7Jp98OiyHbwQ3ssV/DfJQCrVyC8p0LTuLGHz2Ek4nV9tep5P/0j/Z4MirWbmihLbjPBTHlw3Oc86DfCk+23hhxKmdEjhmvm5FegcPP+A0hsLRd1j3Czee3nFDR8rUPPPAegF4pb7U26pdw8oWM1vcv6PLFmGhnTRR84/t8b81x06+Qm7KyJS/eislflJfvPvWt3QCyzYmvS1Vxl07y+gErszNN4qZtaP9VW51RDvURfGMJpILfEaKZjgZxMk54MCrl+UFX9/ElSg+LC0cjHy8J6sBus+EKnAa+uzT7yhNJ0lYBmJlAVHG/nNjdmg2dnQcrxaG+bMsOQwAcPfk=
